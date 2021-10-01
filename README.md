@@ -1,5 +1,83 @@
 임재혁 201740228
 ===============
+
+## [ 09월 29일]
+### 이미지 삽입
+
+```javascript
+<img src="image/[이름]">
+```
+이런 형태로 태그 작성
+
+### prop-types
+prop-types는 컴포넌트가 전달받은 props가 원하는 값인지 확인해 주는 역할을 한다.
+
+<hr/>
+
+### State
+
+```javascript
+class Apps extends Component {
+  constructor(props) {
+    super(props)
+    console.log('constructor');
+  }
+  componentDidMount() {
+    console.log('componentDidMount')
+  }
+  componentDidUpdate() {
+    console.log('componentDidUpdate')
+  }
+  state = {
+    count: 0
+  }
+
+  add = () => {
+    this.setState({count : this.state.count + 1})
+  }
+
+  minus = () => {
+    this.setState({count: this.state.count - 1})
+  }
+
+  render() {
+    console.log("render")
+    return(
+      <div>
+        <h1>Rhe number is: {this.state.count} </h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    )
+  }
+}
+```
+>- class 안에 state = {}라고 작성하여 정의
+>- return 함수로 count 값을 반환 한다.
+
+### state 설명
+props는 정적인 데이터만 다루지만<br>
+state는 동적인 데이터를 다룰 때 사용합니다.<br>
+state는 class형 컴포넌트에서 사용됩니다.
+
+<hr/>
+
+### constructor() 
+>- Component를 생성할 때 state 값을 초기화하거나<br>
+메서드를 바인딩 할때 사용.
+
+### render()
+>- constructor() 다음 호출
+
+### componentDitMount()
+>- render() 함수 실행 직후에 실행
+
+### componentDidUpdate()
+>- render()함수로 화면이 업데이트 된 직후에 실행 된다.
+
+
+<hr/>
+
 ## [ 09월 15일]
 ### Potato()
 
