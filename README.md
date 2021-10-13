@@ -1,6 +1,88 @@
 임재혁 201740228
 ===============
 
+## [10월 13일]
+### loding...
+
+```javascript
+this.setState({movies, isLoading: false})
+```
+- movies를 실행한다.
+- isLoading을 false로 변경한다.
+
+### rating
+
+```javascript
+await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating')
+```
+
+- ?sort_by=rating을 사용하면
+- rating이 큰 수 부터 작은 수까지 나열해준다.
+
+<hr/>
+
+### Movie.js
+
+```javascript
+function Movie({title, year, summary, poster, genres}) {
+    return(
+    <div className='movie'>
+        <img src={poster} alt={title} title ={title} />
+        <div className='movie-data'>
+            <h3 className='movie-title'>{title}</h3>
+            <h5 className='movie-year'>{year}</h5>
+            <p className='movie-summary'>{summary}</p>
+        </div> 
+    </div>
+    )
+}
+```
+- return하는 값은 한 덩어리여야 한다.
+- 각각 title, year, summary, ... 등등 값을 받아온다
+- css를 위해서 className을 달아준다.
+
+
+### isRequired
+
+```javascript
+Movie.propTypes = {
+    year: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    summary:PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired
+}
+```
+- year에 number타입이 필요하다
+- title에 string타입이 필요하다
+- ...
+
+<hr/>
+
+### App.js
+
+```javascript
+movies.map((movie) => {
+  console.log(movie);
+      return <Movie 
+      key = {movie.id}
+      id = {movie.id}
+      year = {movie.year}
+      title = {movie.title}
+      summary = {movie.summary}
+      poster = {movie.medium_cover_image}
+      genres = {movie.genres}
+        />
+      })}
+```
+- key 값은 무조건 필수 <br>
+  마침 id값이 다 다르기 때문에 key 값으로 적합
+- poster 값은 이미지를 받아야하기 때문에 <br>
+  movie.medium_cover_image를 받았습니다.
+
+
+<hr/>
+
 ## [10월 6일]
 ### axios
 데이터 로딩을 할때 axios 를 사용한다. <br>
