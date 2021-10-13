@@ -1,6 +1,70 @@
 임재혁 201740228
 ===============
 
+## [10월 6일]
+### axios
+데이터 로딩을 할때 axios 를 사용한다. <br>
+터미널에 
+> npm istall axios<br>
+
+설치한다
+
+<hr/>
+
+### loding...
+
+```javascript
+class App extends React.Component{
+  state = {
+    isLoading : true,
+    movies : []
+  }
+```
+
+```javascript
+getMovies = async() => {
+    const{
+      data: {
+        data : {movies}
+      }
+    } = await axios.get('https://yts-proxy.now.sh/list_movies.json')
+   // const movies 
+    console.log(movies);
+  }
+```
+
+- status : 응답상태 메세지
+- data : 영화 데이터
+- movie_count : API가 보내준 영화 데이터의 개수
+- limit : 보내준 데이터의 개수
+- movies 키의 서브키로 id, url, lmdb_code, title 등을 제공한다.
+
+<hr/>
+ > API를 사용하려면 axlos 를 import한 다음, <br>
+  componentDidMount()함수에서 axlos로 API를 호출 하면 된다.
+
+
+  ```javascript
+ componentDidMount(){
+   this.getMovies()
+  }
+  render() {
+    const {isLoading} = this.state
+    return(
+      <div>
+        { isLoading ? 'Loading....' : '영화 데이터 출력' }
+        </div>
+    )
+  }
+  ```
+
+  > componentDidMount()함수가 실행 되면 <br>
+  this.getMovie()가 실행된다.<br>
+  이때 자바스크립트에게 getMovies() 함수는 <br>
+  시간이 필요하다는 것을 알려야 하는데 <br>
+  이때 사용 하는 것이 async, awalt이다.
+<hr/>
+
 ## [ 09월 29일]
 ### 이미지 삽입
 
