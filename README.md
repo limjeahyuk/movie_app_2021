@@ -1,5 +1,71 @@
 임재혁 201740228
 ===============
+## [10월 27일]
+### key props 추가
+
+```javascript
+<ul className='movie-genres'>
+                {genres.map((genre, index) => {
+                    return <li key={index} className='movie-genre'>{genre}</li>  
+                })}
+            </ul>
+  ```
+- genres에 key값으로 사용할 id값이 필요합니다.
+- map()함수를 사용하여 배열의 index값을 사용하면<p> 매우 간편하게 사용 가능 합니다.
+- 만약 map함수도 사용 안하고 딱히 key 값으로 사용 할 것이 없다면 <p> for문을 돌려서 만들어 주기로 합시다.
+
+<hr>
+
+### slice 함수
+
+```javascript
+<p className='movie-summary'>
+{summary.slice(0, 180)}...
+</p>
+```
+- slice(0,n) > 글자 수를 n 만큼 제한합니다.
+- 글자가 그냥 끊기면 너무 어색하기 때문에 <p>
+...을 사용해서 부드럽게 만들어 줍니다.
+
+<hr>
+
+### Router 
+Router 설치방법
+```javascript
+npm install react-router-dom
+```
+- 사용자가 입력한 URL을 통해 특정 컴포넌트를 불러준다.
+- 새로운 페이지를 로드하지 않고 <p>
+하나의 페이지 안에서 필요한 데이터만 가져오는 형태
+
+Router import 방법
+```javascript
+import {HashRouter, Route} from 'react-router-dom'
+import About from './routes/About'
+import Home from "./routes/Home"
+```
+
+HashRouter & Router 관계
+```javascript
+<HashRouter>
+      <Route path = '/' exact={true} component={Home} />
+      <Route path = '/about' component={About} />
+    </HashRouter>
+```
+- Router를 HashRouter로 감싸준다.
+- HashRouter는 정적인 페이지에 적합하다.
+
+path - component
+> 어떤 URL에 어떤 컴포넌트를 불러올지 결정한다. <p>
+'/'는 root 값으로 기본 url을 뜻합니다.
+
+exact
+> exact가 없으면 URL에 '/about'를 붙히더라도 기본 컴포넌트도 함께 불러온다<P>
+exact={true} 를 이용해 원하는 URL에 원하는 컴포넌트를 불러옵시다.
+
+
+<hr>
+<hr>
 
 ## [10월 13일]
 ### loding...
@@ -57,6 +123,7 @@ Movie.propTypes = {
 - title에 string타입이 필요하다
 - ...
 
+
 <hr/>
 
 ### App.js
@@ -81,6 +148,7 @@ movies.map((movie) => {
   movie.medium_cover_image를 받았습니다.
 
 
+<hr/>
 <hr/>
 
 ## [10월 6일]
@@ -145,6 +213,7 @@ getMovies = async() => {
   이때 자바스크립트에게 getMovies() 함수는 <br>
   시간이 필요하다는 것을 알려야 하는데 <br>
   이때 사용 하는 것이 async, awalt이다.
+<hr/>
 <hr/>
 
 ## [ 09월 29일]
@@ -221,7 +290,7 @@ state는 class형 컴포넌트에서 사용됩니다.
 ### componentDidUpdate()
 >- render()함수로 화면이 업데이트 된 직후에 실행 된다.
 
-
+<hr/>
 <hr/>
 
 ## [ 09월 15일]
