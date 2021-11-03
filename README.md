@@ -1,5 +1,82 @@
 임재혁 201740228
 ===============
+
+## [11월 03일]
+### Navigation
+
+```javascript
+function Navigation() {
+    return(
+        <div className="nav">
+        <Link to='/'>Home</Link>
+        <Link to='/about'>About</Link>
+        </div>
+    )
+}
+```
+- 글을 클릭했을 때 해당 주소로 가서 화면을 보이게 한다.
+- a 태그는 페이지 전체를 다시 그리는 성질을 가지고 있다. <br>
+  Link를 사용하면 필요한 부분만 그려준다.
+- Link 컴포넌트는 href 대신 to 사용.
+
+```javascript
+function App(){
+  return (
+    <HashRouter>
+      <Navigation />
+      <Route path = '/' exact={true} component={Home} />
+      <Route path = '/about' component={About} />
+      <Route path = '/movie-detail' component={Detail} />
+    </HashRouter>
+  )
+}
+```
+> Navigation 태그는 반드시 HashRouter 태그 안에 포함.
+<hr>
+
+### Detail
+```javascript
+<Link to={{ pathname: 'movie-detail',
+           state: { year, title, 
+           summary, poster, genres }
+            }}>
+```
+- 클릭했을 때 url이 movie-detail로 이동.
+- state 에 주어진 값들을 받아온다.
+- BUT> url에 그냥 movie-detail을 적으면 주어진 값들을 <br>
+받아올수가 없음.
+- state에 아무 값을 받아오지 않았을 경우 다시 back 시켜줘야함.
+
+<hr>
+
+### 리다이렉트 기능
+```javascript
+componentDidMount(){
+        const { location, history} = this.props
+        if(location.state === undefined){
+            history.push("/")
+        }
+    }
+```
+> 만약 state 값이 underfined라면 /으로 이동 시켜주세요.
+<br> componentDidMount()는 render함수가 실행되고 나서 실행
+<br> 그렇기 때문에 state에 underfined 값이 들어 있다면
+<br> render함수가 실행 되지 않는다.
+
+
+```javascript
+render(){
+        if(location.state){
+            return(<span>{location.state.title}</span> )
+        } else{return null}
+      }
+```
+> 이런 식으로 render에서 일어나는 오류까지 잡아주면 된다.
+
+
+<hr>
+<hr>
+
 ## [10월 27일]
 ### key props 추가
 
