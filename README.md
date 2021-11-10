@@ -1,5 +1,72 @@
 임재혁 201740228
 ===============
+## [11월 10일]
+### git hub 페이지
+
+```javascript
+ "homepage": "https://limjeahyuk.github.io/movie_app_2021"
+```
+  git hub에서 지원하는 페이지로 올려주기 위해서 <br>
+  package.json에다가 homepage 주소를 적어줍니다.
+
+```javascript
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+```
+  package.json에 script 부분에 적어줍니다.
+  <br>  <br>
+> npm install gh-pages
+
+github 페이지를 만들기 위해서 터미널에 적어줍니다.
+<br><br>
+> npm run deploy
+
+변경 사항을 다 변경해준다음 커밋까지 다 해준 다음 <br>
+터미널에 적어줍니다. 홈페이지에 배포가 시작됩니다.<br>
+그리고 그 링크로 들어가게 되면 movie_app이 나오게 됩니다.
+
+### min 파일
+    서버로 페이지를 올릴 때 min 파일을 사용합니다.
+    줄바꿈을 다 없애버리고 한줄로 사용합니다.
+    이렇게 사용하는 이유는 줄바꿈도 1byte 이기 때문에
+    최대한 용량을 줄이기 위함 입니다.
+    예를 들어 500줄 짜리 코드를 한줄로 바꾸면 500byte가 줄어드는 것 이기 때문에 배포할때는 min 파일로 하는게 효율적입니다.
+
+<hr>
+
+### CDN
+```javascript
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="..."></script>
+```
+  CDN script 3개를 기본 html에 넣어줍니다.
+
+```javascript
+ <script type="text/babel">
+```
+  script에 text/babel 넣어주는 거 필수.
+
+```javascript
+document.getElementById('hello-example')
+<div id="hello-example"></div>
+```
+ID값을 body에 넣어줍니다.
+
+<hr>
+
+### 리액트 장점
+- 내가 고치고 싶은 부분만 고칠 수가 있습니다.
+- 리액트는 프론트지만 배워두면 리액트 네이티브로 백으로도 전향 가능하다.
+
+ >  고치고 싶은 부분만 고치는게 정말 중요한 이유는<br>
+    요즘 유튜브, 페이스북 같은 거대한 사이트를 전체적으로 고치려면
+    다운로드만 한세월 걸린다.<br>
+    하지만 리액트는 고치고 싶은 부분만 고칠 수 있어서 쉽게 바꿀수가 있다.
+
+
+<hr>
+<hr>
 
 ## [11월 03일]
 ### Navigation
