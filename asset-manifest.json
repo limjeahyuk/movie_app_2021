@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/C:/Users/User/Desktop/%EC%83%88%20%ED%8F%B4%EB%8D%94%20(2)/static/css/main.53d693a4.chunk.css",
-    "main.js": "/C:/Users/User/Desktop/%EC%83%88%20%ED%8F%B4%EB%8D%94%20(2)/static/js/main.8f8cf378.chunk.js",
-    "main.js.map": "/C:/Users/User/Desktop/%EC%83%88%20%ED%8F%B4%EB%8D%94%20(2)/static/js/main.8f8cf378.chunk.js.map",
-    "runtime-main.js": "/C:/Users/User/Desktop/%EC%83%88%20%ED%8F%B4%EB%8D%94%20(2)/static/js/runtime-main.3d18d5ce.js",
-    "runtime-main.js.map": "/C:/Users/User/Desktop/%EC%83%88%20%ED%8F%B4%EB%8D%94%20(2)/static/js/runtime-main.3d18d5ce.js.map",
-    "static/js/2.e6406ddb.chunk.js": "/C:/Users/User/Desktop/%EC%83%88%20%ED%8F%B4%EB%8D%94%20(2)/static/js/2.e6406ddb.chunk.js",
-    "static/js/2.e6406ddb.chunk.js.map": "/C:/Users/User/Desktop/%EC%83%88%20%ED%8F%B4%EB%8D%94%20(2)/static/js/2.e6406ddb.chunk.js.map",
-    "index.html": "/C:/Users/User/Desktop/%EC%83%88%20%ED%8F%B4%EB%8D%94%20(2)/index.html",
-    "static/css/main.53d693a4.chunk.css.map": "/C:/Users/User/Desktop/%EC%83%88%20%ED%8F%B4%EB%8D%94%20(2)/static/css/main.53d693a4.chunk.css.map",
-    "static/js/2.e6406ddb.chunk.js.LICENSE.txt": "/C:/Users/User/Desktop/%EC%83%88%20%ED%8F%B4%EB%8D%94%20(2)/static/js/2.e6406ddb.chunk.js.LICENSE.txt"
+    "main.css": "/limjeahyuk.github.io/movie_app_2021/static/css/main.53d693a4.chunk.css",
+    "main.js": "/limjeahyuk.github.io/movie_app_2021/static/js/main.8f8cf378.chunk.js",
+    "main.js.map": "/limjeahyuk.github.io/movie_app_2021/static/js/main.8f8cf378.chunk.js.map",
+    "runtime-main.js": "/limjeahyuk.github.io/movie_app_2021/static/js/runtime-main.cbd106d4.js",
+    "runtime-main.js.map": "/limjeahyuk.github.io/movie_app_2021/static/js/runtime-main.cbd106d4.js.map",
+    "static/js/2.e6406ddb.chunk.js": "/limjeahyuk.github.io/movie_app_2021/static/js/2.e6406ddb.chunk.js",
+    "static/js/2.e6406ddb.chunk.js.map": "/limjeahyuk.github.io/movie_app_2021/static/js/2.e6406ddb.chunk.js.map",
+    "index.html": "/limjeahyuk.github.io/movie_app_2021/index.html",
+    "static/css/main.53d693a4.chunk.css.map": "/limjeahyuk.github.io/movie_app_2021/static/css/main.53d693a4.chunk.css.map",
+    "static/js/2.e6406ddb.chunk.js.LICENSE.txt": "/limjeahyuk.github.io/movie_app_2021/static/js/2.e6406ddb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3d18d5ce.js",
+    "static/js/runtime-main.cbd106d4.js",
     "static/js/2.e6406ddb.chunk.js",
     "static/css/main.53d693a4.chunk.css",
     "static/js/main.8f8cf378.chunk.js"
