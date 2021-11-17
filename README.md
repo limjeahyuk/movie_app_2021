@@ -1,5 +1,117 @@
 임재혁 201740228
 ===============
+## [11월 17일]
+### timer.html
+
+- this.state = { seconds: 0 }; <br> state를 0으로 설정
+- seconds: state.seconds + 1 <br>
+state에 1 더해준다.
+- this.tick(), 1000); <br>
+1초 (1000) 마다 한번씩 tick함수 실행
+
+### review
+  상태를 가지는 컴포넌트
+  >컴포넌트는 this.props를 이용해 입력 데이터를 다루는 것 외에도 <br>
+  내부적인 상태 데이터를 가질 수 있습니다. <br>
+  이는 this.state로 접근할 수 있습니다.<br>
+  컴포넌트의 상태 데이터가 바뀌면 render() 가 호출 되어 마크업이 갱신됩니다.
+
+<hr>
+
+### TodoApp.html
+```js
+handleChange(e) {
+    this.setState({ text: e.target.value });
+  }
+```
+
+- handlechange는 모든 키보드 변경 마다 react의 state를 갱신해서 보여준다.
+- 유저가 강제로 대문자로 변경할 때도 사용.
+
+```js
+<input
+            id="new-todo"
+            onChange={this.handleChange}
+            value={this.state.text}
+          />
+
+if (this.state.text.length === 0) {
+      return;
+    }
+    const newItem = {
+      text: this.state.text, //전달
+      id: Date.now() 
+    };
+    this.setState(state => ({ 
+      items: state.items.concat(newItem),
+      text: '' //velue 초기화
+    }));
+```
+
+- 유저가 입력 => handlechange => react의 state를 갱신 => form element가 react state를 참조
+- input area에 이벤트가 발생하면 hendlechange가 동작하여 state의 text값을 변경.
+
+```js
+<button>
+            Add #{this.state.items.length + 1}
+          </button>
+
+e.preventDefault();
+```
+- add 버튼을 클릭하여 리스트의 length에 1을 더해서 버튼에 출력
+- 양식을 제출할때는 브라우저 새로고침이 발생한다. <br>
+  리액트는 비동기식이기 때문에 새로고침을 할 필요가 없습니다. <br>그걸 안하게 만들어주는 문장.
+
+### review
+애플리케이션
+> props와 state를 사용해서 간단한 todo 애플리케이션을 만들 수 있음. <br>
+state를 사용해 사용자가 입력한 텍스트와 파일 목록을 관리합니다.<br>
+이벤트 핸들러들이 인라인으로 각각 존재하는 것처럼 보이지만, <br>
+실제로는 이벤트 위임을 통해 하나로 구현됩니다.
+
+
+<hr>
+
+### key props
+> key는 props가 안정적으로 사용할 수 있도록 고유성을 부여하는 것 <br>
+react가 어떤 props를 변경, 추가할지 식별을 도와줌. <br>
+반드시 date를 사용하지 않아도 index값도 가능,<br>
+ 유일한 값이라면 어느 값이든 가능합니다.
+
+<hr>
+
+### javascript
+> java는 배열속성을 정해주지만, <br>
+javascript는 속성을 지정해주지 않기 때문에 <br>
+배열 안에 아무거나 넣어도 된다.
+
+<hr>
+
+### markdown-editor
+외부 플러그인은 remarkable을 사용함으로 cdn으로 링크를 추가한다. <br>
+- 참조 url : https://github.com/jonschlinkert/remarkable
+
+html 파일로는 도저히 안돼서 새로운 파일을 만들어서 해보기 <br>
+1. 새로운 react 만들기 <br>
+npx create-react-app markdown-editor
+
+2. remarkable 설치<br>
+npm install remarkable
+
+3. 코드 복붙!
+
+4. remarkable import 해주기.<br> 
+import { Remarkable } from 'remarkable';
+
+### review
+외부 플러그인을 사용하는 컴포넌트
+> react는 유연하며 다른 라이브러리나 프레임워크를 함께 활용할 수 있습니다. <br>
+이 예제에서는 외부 마크다운 라이브러리인 remarkable을 사용해 <br>
+textarea의 값을 실시간으로 변환합니다.
+
+<hr>
+<hr>
+
 ## [11월 10일]
 ### git hub 페이지
 
