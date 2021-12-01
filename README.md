@@ -1,5 +1,150 @@
 임재혁 201740228
 ===============
+
+## [12월 01일]
+### State and Lifecycle
+
+함수에서 클래스로 변환하기
+<br>
+1. react.component를 확장하는 동일한 이름의 class를 생성.
+2. render() 라고 불리는 빈 메서드를 추가.
+3. 함수의 내용을 render() 메서드 안으로 옮김.
+4. render() 내용 안에 있는 props를 this.props로 변경.
+5. 남아있는 빈 함수 선언을 삭제.
+
+
+클래스에 로컬 state 추가하기
+<br>
+1. render() 메서드 안에 있는 this.props.date를 this.state.date로 변경.
+2. 초기 this.state를 지정하는 class constructor를 추가.
+```js
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+```
+※ 클래스 컴포넌트는 항상 props로 기본 constructor를 호출해야합니다.
+
+3. date prop를 삭제.
+
+### Lifecycle 메서드
+
+- constructor<br>
+  컴포넌트의 생성자 메서드. 가장 먼저 실행
+- getDerivedStateFromProps<br>
+  props로 받아온 것을 state에 넣어주고 싶을 때 사용.<br>
+  컴포넌트가 처음 렌더링 되기 전에도 호출 되고 리렌더링 되기 전에도 매번 실행.
+- componentDidMount<br>
+  컴포넌트의 첫번째 렌더링이 마지고 나면 호출되는 메서드.<br>
+  DOM의 속성을 읽거나 직접 변경하는 작업을 진행.
+- shouldComponentUpdate<br>
+  컴포넌트가 리렌더링 할지 말지를 결정하는 메서드.<br>
+  주로 최적화 할때 사용.
+- getSnapshotBeforeUpdate<br>
+  컴포넌트에 변화가 일어나기 직전의 DOM 상태를 가져와서 특정값을 반환하면<br>
+  그 다음에 발생하게 되는 componentDidUpdate 함수에서 받아와서 사용 가능
+- componentDidUpdate<br>
+  리렌더링이 마치고, 화면에 우리가 원하는 변화가 모두 반영되고 난 뒤 호출
+- componentWillUnmount<br>
+  컴포넌트가 화면에서 사라지기 직전에 호출.<br>
+  주로 DOM에 직접 등록했었던 이벤트 제거.
+
+### State 주의점
+
+- 직접 State를 수정하지 않기. <br>
+  this.state를 지정할 수 있는 유일한 공간은 바로 constructor입니다.
+- State 업데이트는 비동기적일 수도 있습니다.<br>
+  react는 성능을 위해 여러 setState() 호출을 단일 업데이트로 한꺼번에 처리할 수도 있음<br>
+  this.props와 this.state가 비동기적으로 업데이트 될 수 있음.
+- State 업데이트는 병합됩니다.<br>
+  setState()를 호출할 때 react는 제공한 객체를 현재 state로 병합합니다.
+- 데이터는 아래로 흐릅니다.<br>
+  모든 state는 항상 특정한 컴포넌트가 소유하고 있으며 그 state로부터 파생된 <br>
+  UI 또는 데이터는 오직 트리구조에서 자신의 아래에 있는 컴포넌트에만 영향을 미침.
+
+<hr>
+
+### 이벤트 처리하기
+react 엘리먼트에서 이벤트를 처리하는 방식은 DOM 엘리먼트에서 이벤트를 처리하는 방식과 매우 유사.<br>
+
+    react의 이벤트는 소문자 대신 캐멀 케이스를 사용.
+    jsx를 사용하여 문자열이 아닌 함수로 이벤트 핸들러를 전달.
+
+- react에서는 false를 반환해도 기본동작을 방지할 수 없습니다.<br>
+  반드시 preventDefault를 명시적으로 호출해야합니다.
+```js
+function Form() {
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log('You clicked submit.');
+  }
+```
+react를 사용할 때 DOM엘리먼트가 생성된 후 리스너를 추가하기 위해 addEventListener를 호출할 필요 없습니다.<br>
+대신 엘리먼트가 처음 렌더링 될 때 리스너를 제공해야함.
+
+### 바인딩
+
+onClick={this.handleClick}과 같이 뒤에 ()를 사용하지 않고 메서드를 참조할 경우,<br>
+해당 메서드를 바인딩 해야합니다.
+
+1. 클래스 필드를 사용 하여 콜백을 올바르게 바인딩 하는 방법
+  ```js
+   // 이 문법은 `this`가 handleClick 내에서 바인딩되도록 합니다.
+  // 주의: 이 문법은 *실험적인* 문법입니다.
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+  ```
+2. 클래스 필드 문법을 사용하고 있지 않다면 콜백에 화살표 함수를 사용하는 방법
+  ```js
+   // 이 문법은 `this`가 handleClick 내에서 바인딩되도록 합니다.
+    return (
+      <button onClick={() => this.handleClick()}>
+  ```
+  문제점은 클래스가 렌더링 될 때마다 다른 콜백이 생성된다는 것.<br>
+  이러한 문제 때문에 생성자 안에서 바인딩 하거나 클래스 필드문법을 사용하는 것 권장.
+
+### 이벤트 핸들러에 인자 전달
+
+```js
+<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
+<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
+```
+위 두줄은 동등하며 각각 화살표 함수와 funtion.prototype.bind를 사용.
+
+<hr>
+
+### 조건부 렌더링
+react에서는 원하는 동작을 캡슐화 하는 컴포넌트를 만들 수 있습니다.<br>
+애플리케이션의 상태에 따라서 컴포넌트 중 몇 개만을 렌더링 할 수 있습니다.<br>
+
+### 여러 조건을 처리 방법
+
+- 논리 && 연산자로 IF를 인라인으로 표현하기<br>
+  ```js
+   {unreadMessages.length > 0 &&
+        <h2>
+          You have {unreadMessages.length} unread messages.
+        </h2>
+      }
+  ```
+  && 뒤의 엘리먼트는 조건이 true일 때 출력, 반대로 false라면 무시.
+
+- 조건부 연산자로 표현하기
+  ```js
+  The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
+  ```
+  조건이 너무 복잡하다면 컴포넌트를 분리해야 할 때 일수도 있습니다.
+
+### 컴포넌트가 렌더링하는 것을 막기
+다른 컴포넌트에 의해 렌더링 될때 컴포넌트 자체를 숨기고 싶을 때,<br>
+렌더링 결과를 출력하는 대신 null을 반환하면 해결가능.<br>
+컴포넌트의 render 메서드로부터 null을 반환하는 것은 <br>
+생명주기 메서드 호출에 영향을 주지 않습니다.
+
+<hr>
+<hr>
+
 ## [11월 24일]
 ### react공부법
 
